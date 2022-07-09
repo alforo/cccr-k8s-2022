@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: myapp-rs-aff-front
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: myapp-rs-aff-front
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        app: myapp-rs-aff-front
+        tier: frontend
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: tier
+                operator: In
+                values:
+                - frontend
+            topologyKey: "kubernetes.io/hostname"
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: tier
+                operator: In
+                values:
+                - cache 
+            topologyKey: "kubernetes.io/hostname"
+      containers:
+      - name: myapp
+        image: ghcr.io/c1t1d0s7/go-myweb:alpine

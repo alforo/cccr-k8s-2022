@@ -1,0 +1,20 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: myapp-cj-dl-fb
+spec:
+  schedule: "* * * * *"
+  startingDeadlineSeconds: 100
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+           labels:
+             app: myapp-cj-dl-fb
+        spec:
+          restartPolicy: OnFailure
+          containers:
+          - name: sleep
+            image: busybox
+            command: ["sleep", "80"]

@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: myapp-rs-notol
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: myapp-rs-notol
+      tier: backend
+  template:
+    metadata:
+      labels:
+        app: myapp-rs-notol
+        tier: backend
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: tier
+                operator: In
+                values:
+                - cache
+            topologyKey: "kubernetes.io/hostname"
+      containers:
+      - name: myapp
+        image: ghcr.io/c1t1d0s7/go-myweb:alpine

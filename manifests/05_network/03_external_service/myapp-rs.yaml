@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: myapp-rs
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: myapp-rs
+  template:
+    metadata:
+      labels:
+        app: myapp-rs
+    spec:
+      containers:
+      - name: myapp
+        image: ghcr.io/c1t1d0s7/go-myweb:alpine
+        ports:
+        - containerPort: 8080

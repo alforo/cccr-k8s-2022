@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: myapp-svc-namedport
+spec:
+  ports:
+  - name: myapp-http
+    port: 80
+    targetPort: myapp-http
+  selector:
+    app: myapp-rs-namedport

@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp-pod-cm
+spec:
+  containers:
+  - image: ghcr.io/c1t1d0s7/go-myweb:alpine
+    name: myapp
+    env:
+    - name: MESSAGE
+      valueFrom:
+        configMapKeyRef:
+          name: myapp-message
+          key: message
+    args: 
+    - $(MESSAGE)
+    ports:
+    - containerPort: 8080
+      protocol: TCP

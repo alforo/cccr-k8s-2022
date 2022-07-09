@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-deploy-hpa
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: myapp-deploy-hpa
+  template:
+    metadata:
+      labels:
+        app: myapp-deploy-hpa
+    spec:
+      containers:
+      - name: myapp
+        image: ghcr.io/c1t1d0s7/go-myweb:alpine
+        resources:
+          requests:
+            cpu: 50m
+            memory: 5Mi
+          limits:
+            cpu: 100m
+            memory: 20Mi
+        ports:
+        - containerPort: 8080

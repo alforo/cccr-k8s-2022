@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp-pod-env
+spec:
+  containers:
+  - image: ghcr.io/c1t1d0s7/go-myweb:alpine
+    name: myapp
+    env:
+    - name: MESSAGE
+      value: "Customized Hello World!"
+    ports:
+    - containerPort: 8080
+      protocol: TCP

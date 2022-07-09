@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: myapp-quota-object
+spec:
+  hard:
+    pods: 10
+    replicationcontrollers: 2
+    secrets: 10
+    configmaps: 10
+    persistentvolumeclaims: 5
+    services: 5
+    services.loadbalancers: 1
+    services.nodeports: 2
+    nfs-client.storageclass.storage.k8s.io/persistentvolumeclaims: 2

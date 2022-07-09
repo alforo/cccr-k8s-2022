@@ -1,0 +1,20 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: myapp-cj-dl-al
+spec:
+  schedule: "* * * * *"
+  startingDeadlineSeconds: 100
+  concurrencyPolicy: Allow
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+           labels:
+             app: myapp-cj-dl-al
+        spec:
+          restartPolicy: OnFailure
+          containers:
+          - name: sleep
+            image: busybox
+            command: ["sleep", "80"]

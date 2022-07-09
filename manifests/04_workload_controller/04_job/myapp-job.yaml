@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: myapp-job
+spec:
+  template:
+    metadata:
+      labels:
+        app: myapp-job
+    spec:
+      restartPolicy: OnFailure
+      containers:
+      - name: pi
+        image: perl
+        command: ["perl", "-Mbignum=bpi", "-wle", "print bpi(1000)"]

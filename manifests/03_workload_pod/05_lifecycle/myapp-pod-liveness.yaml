@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp-pod-liveness
+spec:
+  containers:
+  - name: myapp
+    image: ghcr.io/c1t1d0s7/go-myweb:alpine
+    ports:
+    - containerPort: 8080
+      protocol: TCP
+    livenessProbe:
+      httpGet:
+        path: /health
+        port: 8080

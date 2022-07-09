@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: myapp-rs-exp
+spec:
+  replicas: 3
+  selector:
+    matchExpressions:
+      - key: app
+        operator: In
+        values:
+          - myapp-rs-exp
+      - key: env
+        operator: Exists
+  template:
+    metadata:
+      labels:
+        app: myapp-rs-exp
+        env: dev
+    spec:
+      containers:
+      - name: myapp
+        image: ghcr.io/c1t1d0s7/go-myweb:alpine
+        ports:
+        - containerPort: 8080

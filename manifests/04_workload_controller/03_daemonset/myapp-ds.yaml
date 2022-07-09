@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: myapp-ds
+spec:
+  selector:
+    matchLabels:
+      app: myapp-ds
+  template:
+    metadata:
+      labels:
+        app: myapp-ds
+    spec:
+      nodeSelector:
+        node: development
+      containers:
+      - name: myapp
+        image: ghcr.io/c1t1d0s7/go-myweb:alpine
+        ports:
+        - containerPort: 8080

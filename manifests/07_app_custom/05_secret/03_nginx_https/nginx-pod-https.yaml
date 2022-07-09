@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod-https
+spec:
+  containers:
+  - image: nginx
+    name: nginx-https
+    volumeMounts:
+    - name: nginx-tls-config
+      mountPath: /etc/nginx/conf.d
+    - name: https-cert
+      mountPath: /etc/nginx/ssl
+      readOnly: true
+    ports:
+    - containerPort: 80
+      protocol: TCP
+    - containerPort: 443
+      protocol: TCP
+  volumes:
+  - name: nginx-tls-config
+    configMap:
+      name: nginx-tls-config
+  - name: https-cert
+    secret:
+      secretName: nginx-tls-secret

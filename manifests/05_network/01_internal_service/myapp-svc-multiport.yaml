@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: myapp-svc-multiport
+spec:
+  ports:
+  - name: myapp-http
+    port: 80
+    targetPort: 8080
+  - name: myapp-https
+    port: 443
+    targetPort: 8443
+  selector:
+    app: myapp-rs

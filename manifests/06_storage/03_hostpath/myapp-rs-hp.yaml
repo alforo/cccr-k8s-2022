@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: myapp-rs-hp
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: myapp-rs-hp
+  template:
+    metadata:
+      labels:
+        app: myapp-rs-hp
+    spec:
+      #nodeName: kube-node1
+      containers:
+      - name: web-server
+        image: nginx:alpine
+        volumeMounts:
+        - name: web-content
+          mountPath: /usr/share/nginx/html
+        ports:
+        - containerPort: 80
+      volumes:
+      - name: web-content
+        hostPath:
+          type: Directory
+          path: /srv/web_contents
