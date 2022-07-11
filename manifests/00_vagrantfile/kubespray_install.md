@@ -89,9 +89,9 @@ vi inventory/mycluster/inventory.ini
 ```ini
 [all]  
 kube-control1	ansible_host=192.168.56.11 ip=192.168.56.11
-kube-node1		ansible_host=192.168.56.21 ip=192.168.56.21
-kube-node2		ansible_host=192.168.56.22 ip=192.168.56.22
-kube-node3		ansible_host=192.168.56.23 ip=192.168.56.23
+kube-node1	ansible_host=192.168.56.21 ip=192.168.56.21
+kube-node2	ansible_host=192.168.56.22 ip=192.168.56.22
+kube-node3	ansible_host=192.168.56.23 ip=192.168.56.23
 
 [kube_control_plane]  
 kube-control1 
@@ -157,7 +157,7 @@ kube-node2 | SUCCESS => {
 }
 ```
 
-* Apt 캐시 업데이트 (모든 노드)
+* (옵션) apt 캐시 업데이트 (모든 노드)
 ```
 ansible all -i inventory/mycluster/inventory.ini -m apt -a 'update_cache=yes' --become
 
