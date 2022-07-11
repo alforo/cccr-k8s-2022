@@ -61,7 +61,7 @@ brew install virtualbox virtualbox-extension-pack
 > https://www.virtualbox.org/wiki/Linux_Downloads
 
 ```
-echo -e "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian bionic contrib" | sudo tee -a /etc/apt/sources.list
+echo -e "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian focal contrib" | sudo tee -a /etc/apt/sources.list
 ```
 
 ```
