@@ -184,7 +184,7 @@ vagrant status
 
 ### VM 접속
 ```
-vagrant ssh kube-master1
+vagrant ssh kube-control1
 ```
 
 ### VM 종료
