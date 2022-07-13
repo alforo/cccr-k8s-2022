@@ -135,6 +135,15 @@ kube_proxy_strict_arp: true
 container_manager: docker
 ```
 
+```
+vi inventory/mycluster/group_vars/all/docker.yml
+```
+
+```
+# Uncomment
+docker_cgroup_driver: systemd
+```
+
 * Ansible 통신 가능 확인
 ```
 ansible all -i inventory/mycluster/inventory.ini -m ping
