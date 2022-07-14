@@ -227,3 +227,8 @@ kubectl cluster-info
 ```
 
 * TODO: zsh + ohmyzsh 설치
+
+## 3. Reset kubespray
+```
+ansible-playbook -i inventory/mycluster/inventory.ini reset.yml --become
+```
