@@ -200,6 +200,7 @@ sudo apt update
 ```
 
 * 플레이북 실행
+> kubespray 릴리즈 정보에서 지원되는 kubernetes 버전 확인 필수! (최신 버전 - 0.1 or 0.2 사용)
 ```
 ansible-playbook -i inventory/mycluster/inventory.ini cluster.yml -e kube_version=v1.22.X --become
 ```
@@ -225,3 +226,4 @@ kubectl get nodes
 kubectl cluster-info
 ```
 
+* TODO: zsh + ohmyzsh 설치
