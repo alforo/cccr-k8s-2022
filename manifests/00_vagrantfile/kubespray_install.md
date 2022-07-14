@@ -135,15 +135,6 @@ kube_proxy_strict_arp: true
 container_manager: docker
 ```
 
-```
-vi inventory/mycluster/group_vars/all/docker.yml
-```
-
-```
-# Uncomment
-docker_cgroup_driver: systemd
-```
-
 * Ansible 통신 가능 확인
 ```
 ansible all -i inventory/mycluster/inventory.ini -m ping
@@ -224,6 +215,15 @@ exec bash
 ```
 kubectl get nodes
 kubectl cluster-info
+```
+
+* Patch kubelet cgroupDriver (control1 포함 모든 node에서 수행!)
+```
+sudo vi /etc/kubernetes/kubelet-config.yaml
+```
+
+```
+cgroupDriver: cgroupfs -> systemd
 ```
 
 * TODO: zsh + ohmyzsh 설치
