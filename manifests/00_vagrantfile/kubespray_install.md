@@ -13,7 +13,7 @@ OS: Ubuntu 20.04 LTS(Focal)
 
 | Control Plane      | IP               | CPU | Memory |
 |--------------------|------------------|-----|--------|
-| kube-control1 | 192.168.56.11/24 | 2   | 2560MB |
+| kube-control1      | 192.168.56.11/24 | 2   | 2560MB |
 
 | Node               | IP               | CPU | Memory |
 |--------------------|------------------|-----|--------|
@@ -138,7 +138,8 @@ container_manager: docker
 * Ansible 통신 가능 확인
 ```
 ansible all -i inventory/mycluster/inventory.ini -m ping
-
+```
+```
 kube-controlplane1 | SUCCESS => {
     "changed": false,
     "ping": "pong"
@@ -160,7 +161,8 @@ kube-node2 | SUCCESS => {
 * (옵션) apt 캐시 업데이트 (모든 노드)
 ```
 ansible all -i inventory/mycluster/inventory.ini -m apt -a 'update_cache=yes' --become
-
+```
+```
 kube-controlplane1 | CHANGED => {
     "cache_update_time": 1584068822,
     "cache_updated": true,
