@@ -38,8 +38,8 @@ managedNodeGroups:
     desiredCapacity: 2
     maxSize: 3
     privateNetworking: true
-    ssh:
-      allow: true
+    #ssh:
+      #allow: true
       #publicKeyPath: ./keypair/myeks.pub
     availabilityZones: ["ap-northeast-2a", "ap-northeast-2b", "ap-northeast-2c"]
     iam:
