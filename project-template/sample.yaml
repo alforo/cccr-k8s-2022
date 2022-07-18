@@ -1,0 +1,57 @@
+wordpressUsername: 
+wordpressPassword: 
+wordpressEmail: 
+wordpressFirstName: 
+wordpressLastName: 
+wordpressBlogName: "CCCR Project"
+
+replicaCount: 2
+resources:
+  requests:
+    cpu: 300m
+    memory: 300Mi
+
+readinessProbe:
+  enabled: true
+livenessProbe:
+  enabled: true
+startupProbe:
+  enabled: true
+
+service:
+  type: NodePort
+
+ingress:
+  enabled: true
+  hostname: 'cccr.example.com'
+
+persistence:
+  enabled: true
+  accessModes:
+    - ReadWriteMany
+  size: 1Gi
+  storageClass: nfs-client
+
+mariadb:
+  enabled: true
+  architecture: replication
+  auth:
+    rootPassword: P@ssw0rd
+    database: cccr_wordpress
+    username: cccr_admin
+    password: cccr_P@ssw0rd
+  primary:
+    persistence:
+      storageClass: nfs-client
+      size: 1Gi
+  secondary:
+    persistence:
+      storageClass: nfs-client
+      size: 1Gi
+
+memcached:
+  enabled: true
+  auth:
+    enabled: true
+    username: cccr_admin
+    password: cccr_P@ssw0rd
